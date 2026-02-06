@@ -1,0 +1,10 @@
+target/
+**/target/
+
+# Build / tool artifacts
+Cargo.lock
+
+# Runtime output
+arbitrage_opportunities.csv
+session_summary.txt
+

@@ -1,0 +1,11 @@
+[package]
+name = "arbide"
+version = "0.1.0"
+edition = "2021"
+description = "Real-Time Arbitrage Detection System"
+authors = ["Arbide"]
+license = "MIT"
+
+[dependencies]
+rand = "0.8"
+ctrlc = "3"
