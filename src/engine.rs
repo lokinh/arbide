@@ -1,6 +1,6 @@
 use crate::core::{ArbitrageDetector, MarketUpdateType, timestamp_ns};
 use crate::feeds::{BinanceFeed, BybitFeed, CoinbaseFeed, ExchangeManager, KrakenFeed};
-use crate::risk::{Decision, SimpleRiskManager};
+use crate::risk::SimpleRiskManager;
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
@@ -16,7 +16,6 @@ struct PerfTracker {
     min_latency_ns: AtomicU64,
     max_latency_ns: AtomicU64,
     arbitrage_opportunities: AtomicU64,
-    trades_executed: AtomicU64,
     start_time: Instant,
 }
 
@@ -28,7 +27,6 @@ impl PerfTracker {
             min_latency_ns: AtomicU64::new(u64::MAX),
             max_latency_ns: AtomicU64::new(0),
             arbitrage_opportunities: AtomicU64::new(0),
-            trades_executed: AtomicU64::new(0),
             start_time: Instant::now(),
         }
     }
@@ -59,9 +57,6 @@ impl PerfTracker {
     fn record_arbitrage(&self) {
         self.arbitrage_opportunities.fetch_add(1, Ordering::Relaxed);
     }
-    fn record_trade(&self) {
-        self.trades_executed.fetch_add(1, Ordering::Relaxed);
-    }
 
     fn print_stats(&self) {
         let updates = self.total_updates.load(Ordering::Relaxed);
@@ -74,7 +69,6 @@ impl PerfTracker {
         let min_lat = self.min_latency_ns.load(Ordering::Relaxed);
         let max_lat = self.max_latency_ns.load(Ordering::Relaxed);
         let opportunities = self.arbitrage_opportunities.load(Ordering::Relaxed);
-        let trades = self.trades_executed.load(Ordering::Relaxed);
 
         println!("\n╔══════════════════════════════════════════════════════════════╗");
         println!("║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║");
@@ -101,13 +95,6 @@ impl PerfTracker {
             max_lat / 1000
         );
         println!("║ Opportunities:     {:>8}                              ║", opportunities);
-        println!("║ Trades Executed:   {:>8}                              ║", trades);
-        if opportunities > 0 {
-            println!(
-                "║ Execution Rate:    {:>7.1}%                              ║",
-                (trades as f64 / opportunities as f64) * 100.0
-            );
-        }
         println!("╚══════════════════════════════════════════════════════════════╝\n");
     }
 }
@@ -137,7 +124,7 @@ impl Engine {
         detector.set_min_profit_bps(5.0);
 
         let mut risk_manager = SimpleRiskManager::new();
-        risk_manager.set_risk_limits(10.0, -5.0);
+        risk_manager.set_risk_limits(10.0, 1.0);
 
         Self {
             detector,
@@ -239,32 +226,32 @@ impl Engine {
                 let _ = file.write_all(line.as_bytes());
                 let _ = file.flush();
 
-                if assessment.decision == Decision::Approved {
-                    println!("==> APPROVED ARBITRAGE OPPORTUNITY <==");
-                    self.perf.record_trade();
-                } else {
-                    println!("==> ARBITRAGE OPPORTUNITY (REJECTED) <==");
-                }
-                println!(
-                    "Symbol: {} | Buy: {} @ ${:.2} | Sell: {} @ ${:.2}",
-                    opp.symbol, opp.buy_exchange, opp.buy_price, opp.sell_exchange, opp.sell_price
-                );
-                println!(
-                    "Gross Profit: {:.1} bps | Net Profit: {:.1} bps | Latency: {} μs",
-                    opp.profit_bps, assessment.net_profit_bps, opp.latency_ns / 1000
-                );
-                if assessment.decision != Decision::Approved {
-                    println!("✗ Rejected: {}", assessment.reason);
-                } else {
-                    println!("✓ Trade Size: {:.4} BTC", assessment.recommended_size);
-                    let gross_pnl =
-                        (opp.sell_price - opp.buy_price) * assessment.recommended_size;
-                    let fees = (assessment.recommended_size * opp.buy_price
-                        + assessment.recommended_size * opp.sell_price)
-                        * 0.001;
-                    println!("$ Expected P&L: ${:.2}", gross_pnl - fees);
-                }
-                println!("----------------------------------------");
+                // if assessment.decision == Decision::Approved {
+                //     println!("==> APPROVED ARBITRAGE OPPORTUNITY <==");
+                //     self.perf.record_trade();
+                // } else {
+                //     println!("==> ARBITRAGE OPPORTUNITY (REJECTED) <==");
+                // }
+                // println!(
+                //     "Symbol: {} | Buy: {} @ ${:.2} | Sell: {} @ ${:.2}",
+                //     opp.symbol, opp.buy_exchange, opp.buy_price, opp.sell_exchange, opp.sell_price
+                // );
+                // println!(
+                //     "Gross Profit: {:.1} bps | Net Profit: {:.1} bps | Latency: {} μs",
+                //     opp.profit_bps, assessment.net_profit_bps, opp.latency_ns / 1000
+                // );
+                // if assessment.decision != Decision::Approved {
+                //     println!("✗ Rejected: {}", assessment.reason);
+                // } else {
+                //     println!("✓ Trade Size: {:.4} BTC", assessment.recommended_size);
+                //     let gross_pnl =
+                //         (opp.sell_price - opp.buy_price) * assessment.recommended_size;
+                //     let fees = (assessment.recommended_size * opp.buy_price
+                //         + assessment.recommended_size * opp.sell_price)
+                //         * 0.001;
+                //     println!("$ Expected P&L: ${:.2}", gross_pnl - fees);
+                // }
+                // println!("----------------------------------------");
             }
         }
 

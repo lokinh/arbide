@@ -35,6 +35,8 @@ pub struct SimpleRiskManager {
     opportunities_seen: AtomicU64,
     opportunities_taken: AtomicU64,
     daily_pnl: std::sync::atomic::AtomicU64,
+    win_trades: AtomicU64,
+    total_exposure: std::sync::atomic::AtomicU64,
 }
 
 impl Default for SimpleRiskManager {
@@ -45,6 +47,8 @@ impl Default for SimpleRiskManager {
             opportunities_seen: AtomicU64::new(0),
             opportunities_taken: AtomicU64::new(0),
             daily_pnl: std::sync::atomic::AtomicU64::new(0),
+            win_trades: AtomicU64::new(0),
+            total_exposure: std::sync::atomic::AtomicU64::new(0),
         }
     }
 }
@@ -57,10 +61,10 @@ impl SimpleRiskManager {
     pub fn set_risk_limits(&mut self, max_trade: f64, min_profit: f64) {
         self.max_trade_size = max_trade;
         self.min_profit_bps = min_profit;
-        println!(
-            "[DEBUG] Risk limits updated: Max trade={} BTC, Min profit={} bps",
-            self.max_trade_size, self.min_profit_bps
-        );
+        // println!(
+        //     "[DEBUG] Risk limits updated: Max trade={} BTC, Min profit={} bps",
+        //     self.max_trade_size, self.min_profit_bps
+        // );
     }
 
     pub fn assess_opportunity(&self, opp: &ArbitrageOpportunity) -> Assessment {
@@ -69,10 +73,10 @@ impl SimpleRiskManager {
         let fees_bps = 20.0;
         let net_profit_bps = opp.profit_bps - fees_bps;
 
-        println!(
-            "[DEBUG] Gross: {} bps, Fees: {} bps, Net: {} bps, Min Required: {} bps",
-            opp.profit_bps, fees_bps, net_profit_bps, self.min_profit_bps
-        );
+        // println!(
+        //     "[DEBUG] Gross: {} bps, Fees: {} bps, Net: {} bps, Min Required: {} bps",
+        //     opp.profit_bps, fees_bps, net_profit_bps, self.min_profit_bps
+        // );
 
         if net_profit_bps < self.min_profit_bps {
             return Assessment {
@@ -105,10 +109,20 @@ impl SimpleRiskManager {
         let current = f64::from_bits(self.daily_pnl.load(Ordering::Relaxed));
         self.daily_pnl.store((current + net_pnl).to_bits(), Ordering::Relaxed);
 
-        println!(
-            "[DEBUG] APPROVED: Size={} BTC, Expected P&L=${}",
-            recommended_size, net_pnl
-        );
+        if net_pnl > 0.0 {
+            self.win_trades.fetch_add(1, Ordering::Relaxed);
+        }
+
+        let exposure_increment =
+            (recommended_size * opp.buy_price).abs() + (recommended_size * opp.sell_price).abs();
+        let exposure_cur = f64::from_bits(self.total_exposure.load(Ordering::Relaxed));
+        self.total_exposure
+            .store((exposure_cur + exposure_increment).to_bits(), Ordering::Relaxed);
+
+        // println!(
+        //     "[DEBUG] APPROVED: Size={} BTC, Expected P&L=${}",
+        //     recommended_size, net_pnl
+        // );
 
         Assessment {
             decision: Decision::Approved,
@@ -122,9 +136,17 @@ impl SimpleRiskManager {
         let opportunities_seen = self.opportunities_seen.load(Ordering::Relaxed);
         let opportunities_taken = self.opportunities_taken.load(Ordering::Relaxed);
         let daily_pnl = f64::from_bits(self.daily_pnl.load(Ordering::Relaxed));
+        let win_trades = self.win_trades.load(Ordering::Relaxed);
+        let total_exposure = f64::from_bits(self.total_exposure.load(Ordering::Relaxed));
 
         let take_rate = if opportunities_seen > 0 {
             opportunities_taken as f64 / opportunities_seen as f64
+        } else {
+            0.0
+        };
+
+        let win_rate = if opportunities_taken > 0 {
+            win_trades as f64 / opportunities_taken as f64
         } else {
             0.0
         };
@@ -134,10 +156,10 @@ impl SimpleRiskManager {
             opportunities_taken,
             take_rate,
             daily_pnl,
-            total_exposure: opportunities_taken as f64 * 0.5 * 50_000.0,
-            active_positions: opportunities_taken.min(8) as u64,
-            current_drawdown: 0.02,
-            win_rate: 0.85,
+            total_exposure,
+            active_positions: 0,
+            current_drawdown: 0.0,
+            win_rate,
         }
     }
 }

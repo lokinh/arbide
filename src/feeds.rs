@@ -1,10 +1,8 @@
 use crate::core::MarketUpdate;
-use rand::Rng;
+use crate::ws::{binance, bybit, coinbase, kraken};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::Sender;
 use std::sync::Arc;
-use std::thread;
-use std::time::Duration;
 
 pub trait ExchangeFeed: Send + Sync + 'static {
     fn exchange_name(&self) -> &str;
@@ -39,22 +37,7 @@ impl ExchangeFeed for BinanceFeed {
             return;
         }
         let running = Arc::clone(&self.running);
-        thread::spawn(move || {
-            let mut rng = rand::thread_rng();
-            let base_price = 50_000.0;
-            let volatility = 0.001;
-            let exchange = "binance".to_string();
-            while running.load(Ordering::SeqCst) {
-                let mid_price = base_price * (1.0 + (rng.gen::<f64>() - 0.5) * 2.0 * volatility);
-                let half_spread = (rng.gen::<f64>() * 0.1 + 0.15).min(1.0);
-                let bid = mid_price - half_spread;
-                let ask = mid_price + half_spread;
-                let _ = tx.send(MarketUpdate::bid(&symbol, &exchange, bid, 150.0));
-                let _ = tx.send(MarketUpdate::ask(&symbol, &exchange, ask, 150.0));
-                let delay = rng.gen_range(35..=45);
-                thread::sleep(Duration::from_millis(delay));
-            }
-        });
+        binance::start_binance_ws(symbol, tx, running);
     }
     fn stop(&self) {
         self.running.store(false, Ordering::SeqCst);
@@ -88,22 +71,7 @@ impl ExchangeFeed for CoinbaseFeed {
             return;
         }
         let running = Arc::clone(&self.running);
-        thread::spawn(move || {
-            let mut rng = rand::thread_rng();
-            let base_price = 50_000.0;
-            let volatility = 0.0012;
-            let exchange = "coinbase".to_string();
-            while running.load(Ordering::SeqCst) {
-                let mid_price = base_price * (1.0 + (rng.gen::<f64>() - 0.5) * 2.0 * volatility);
-                let half_spread = (rng.gen::<f64>() * 0.2 + 0.4).min(2.0);
-                let bid = mid_price - half_spread;
-                let ask = mid_price + half_spread;
-                let _ = tx.send(MarketUpdate::bid(&symbol, &exchange, bid, 120.0));
-                let _ = tx.send(MarketUpdate::ask(&symbol, &exchange, ask, 120.0));
-                let delay = rng.gen_range(50..=70);
-                thread::sleep(Duration::from_millis(delay));
-            }
-        });
+        coinbase::start_coinbase_ws(symbol, tx, running);
     }
     fn stop(&self) {
         self.running.store(false, Ordering::SeqCst);
@@ -137,22 +105,7 @@ impl ExchangeFeed for KrakenFeed {
             return;
         }
         let running = Arc::clone(&self.running);
-        thread::spawn(move || {
-            let mut rng = rand::thread_rng();
-            let base_price = 50_000.0;
-            let volatility = 0.0015;
-            let exchange = "kraken".to_string();
-            while running.load(Ordering::SeqCst) {
-                let mid_price = base_price * (1.0 + (rng.gen::<f64>() - 0.5) * 2.0 * volatility);
-                let half_spread = (rng.gen::<f64>() * 0.4 + 0.6).min(3.0);
-                let bid = mid_price - half_spread;
-                let ask = mid_price + half_spread;
-                let _ = tx.send(MarketUpdate::bid(&symbol, &exchange, bid, 80.0));
-                let _ = tx.send(MarketUpdate::ask(&symbol, &exchange, ask, 80.0));
-                let delay = rng.gen_range(70..=150);
-                thread::sleep(Duration::from_millis(delay));
-            }
-        });
+        kraken::start_kraken_ws(symbol, tx, running);
     }
     fn stop(&self) {
         self.running.store(false, Ordering::SeqCst);
@@ -186,23 +139,7 @@ impl ExchangeFeed for BybitFeed {
             return;
         }
         let running = Arc::clone(&self.running);
-        thread::spawn(move || {
-            let mut rng = rand::thread_rng();
-            let base_price = 50_000.0;
-            let volatility = 0.002;
-            let exchange = "bybit".to_string();
-            while running.load(Ordering::SeqCst) {
-                let lag = rng.gen_range(0.98..=1.02);
-                let mid_price = base_price * (1.0 + (rng.gen::<f64>() - 0.5) * 2.0 * volatility) * lag;
-                let half_spread = (rng.gen::<f64>() * 0.15 + 0.25).min(1.5);
-                let bid = mid_price - half_spread;
-                let ask = mid_price + half_spread;
-                let _ = tx.send(MarketUpdate::bid(&symbol, &exchange, bid, 200.0));
-                let _ = tx.send(MarketUpdate::ask(&symbol, &exchange, ask, 200.0));
-                let delay = rng.gen_range(45..=65);
-                thread::sleep(Duration::from_millis(delay));
-            }
-        });
+        bybit::start_bybit_ws(symbol, tx, running);
     }
     fn stop(&self) {
         self.running.store(false, Ordering::SeqCst);
