@@ -6,5 +6,6 @@ Cargo.lock
 
 # Runtime output
 arbitrage_opportunities.csv
+mm_activity.csv
 session_summary.txt
 

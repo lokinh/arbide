@@ -1,4 +1,4 @@
-use arbide::engine::Engine;
+use arbide::engine::{Engine, RunMode};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::thread;
@@ -13,11 +13,27 @@ fn main() {
     })
     .expect("set Ctrl+C handler");
 
+    let mode = std::env::args()
+        .find(|a| a == "--mode" || a == "-m")
+        .and_then(|_| std::env::args().nth(2))
+        .and_then(|s| match s.as_str() {
+            "arb" => Some(RunMode::Arb),
+            "mm" => Some(RunMode::Mm),
+            _ => None,
+        })
+        .unwrap_or(RunMode::Mm);
+
     println!("⚡ Arbide Ultra-Fast Initialization...");
-    println!("⚡ Rust - Zero external dependencies for core engine");
+    println!(
+        "⚡ Mode: {}",
+        match mode {
+            RunMode::Arb => "arb (cross-exchange arbitrage detection)",
+            RunMode::Mm => "mm (market-making on primary exchange)",
+        }
+    );
     println!("⚡ Build: release recommended for best performance\n");
 
-    let engine = Engine::new();
+    let engine = Engine::new_with_mode(mode);
     let running = Arc::clone(&engine.running);
 
     let engine_handle = thread::spawn(move || {

@@ -80,11 +80,22 @@ async fn run_ws_loop(symbol: String, tx: Sender<MarketUpdate>, running: Arc<Atom
 
 fn parse_ticker(raw: &str) -> Option<(f64, f64)> {
     let v: serde_json::Value = serde_json::from_str(raw).ok()?;
+    if v.get("op").and_then(|o| o.as_str()) == Some("subscribe") {
+        return None;
+    }
     let data = v.get("data")?;
-    let arr = data.as_array()?;
-    let first = arr.get(0)?;
-    let bid_str = first.get("bid1Price")?.as_str()?;
-    let ask_str = first.get("ask1Price")?.as_str()?;
+    let (bid_str, ask_str) = if let Some(obj) = data.as_object() {
+        let b = obj.get("bid1Price")?.as_str()?;
+        let a = obj.get("ask1Price")?.as_str()?;
+        (b, a)
+    } else if let Some(arr) = data.as_array() {
+        let first = arr.get(0)?;
+        let b = first.get("bid1Price")?.as_str()?;
+        let a = first.get("ask1Price")?.as_str()?;
+        (b, a)
+    } else {
+        return None;
+    };
     let bid = bid_str.parse().ok()?;
     let ask = ask_str.parse().ok()?;
     Some((bid, ask))

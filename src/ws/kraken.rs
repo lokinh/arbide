@@ -87,6 +87,7 @@ async fn run_ws_loop(symbol: String, tx: Sender<MarketUpdate>, running: Arc<Atom
     }
 }
 
+// Kraken spread data: [bid, ask, timestamp, bid_volume, ask_volume] — indices 0 and 1 are prices.
 fn parse_spread(raw: &str) -> Option<(f64, f64)> {
     let v: serde_json::Value = serde_json::from_str(raw).ok()?;
     if v.is_object() {
@@ -98,11 +99,11 @@ fn parse_spread(raw: &str) -> Option<(f64, f64)> {
     }
     let spread = &arr[1];
     let spread_arr = spread.as_array()?;
-    if spread_arr.len() < 4 {
+    if spread_arr.len() < 2 {
         return None;
     }
     let bid_str = spread_arr[0].as_str()?;
-    let ask_str = spread_arr[2].as_str()?;
+    let ask_str = spread_arr[1].as_str()?;
     let bid = bid_str.parse().ok()?;
     let ask = ask_str.parse().ok()?;
     Some((bid, ask))

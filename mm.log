@@ -1,0 +1,360 @@
+   Compiling arbide v0.1.0 (/Users/lokinguyen/Documents/Workspace/test/arbide)
+    Finished `release` profile [optimized] target(s) in 1.41s
+     Running `target/release/arbide`
+⚡ Arbide Ultra-Fast Initialization...
+⚡ Mode: mm (market-making on primary exchange)
+⚡ Build: release recommended for best performance
+
+╔══════════════════════════════════════════════════════════════╗
+║        ⚡ ARBIDE ENGINE (MARKET-MAKING MODE) ⚡                ║
+╠══════════════════════════════════════════════════════════════╣
+║ Symbol:            BTCUSDT                                   ║
+║ Primary exchange:  binance                                        ║
+║ Target spread:     20 bps (min)                           ║
+║ Max quote size:    0.0100 BTC                                 ║
+╚══════════════════════════════════════════════════════════════╝
+
+Press Ctrl+C to stop safely...
+
+Starting 4 exchange feeds...
+  Starting binance feed
+  Starting coinbase feed
+  Starting kraken feed
+  Starting bybit feed
+Connecting Kraken WS: wss://ws.kraken.com pair=XBT/USDT
+Connecting Binance WS: wss://stream.binance.com/stream?streams=btcusdt@bookTicker
+Connecting Bybit WS: wss://stream.bybit.com/v5/public/linear topic=tickers.BTCUSDT
+Connecting Coinbase WS: wss://advanced-trade-ws.coinbase.com product_id=BTC-USDT
+Bybit WS connected for symbol BTCUSDT
+Binance WS connected for symbol BTCUSDT
+Kraken WS connected for pair XBT/USDT
+Coinbase WS connected for product BTC-USDT
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               10.0 seconds                        ║
+║ Total Updates:          304                              ║
+║ Updates/sec:           30.4                              ║
+║ Avg Latency:             27 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:            271 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70380.94 primary_bid=70398.42 primary_ask=70398.43 quote_bid=70310.43 quote_ask=70451.45 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               20.0 seconds                        ║
+║ Total Updates:         3796                              ║
+║ Updates/sec:          189.7                              ║
+║ Avg Latency:              4 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:            624 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70400.77 primary_bid=70418.92 primary_ask=70418.93 quote_bid=70330.35 quote_ask=70471.19 | primary_spread_bps=0.00 half_spread_bps=10.00 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               30.0 seconds                        ║
+║ Total Updates:         6196                              ║
+║ Updates/sec:          206.4                              ║
+║ Avg Latency:              3 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:            624 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               40.0 seconds                        ║
+║ Total Updates:         8202                              ║
+║ Updates/sec:          205.0                              ║
+║ Avg Latency:              3 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:            624 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70439.11 primary_bid=70473.32 primary_ask=70476.53 quote_bid=70368.55 quote_ask=70509.67 | primary_spread_bps=0.46 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               50.0 seconds                        ║
+║ Total Updates:        11762                              ║
+║ Updates/sec:          235.1                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:            624 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70464.24 primary_bid=70484.59 primary_ask=70484.60 quote_bid=70392.93 quote_ask=70535.55 | primary_spread_bps=0.00 half_spread_bps=10.12 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70500.57 primary_bid=70527.59 primary_ask=70527.60 quote_bid=70430.02 quote_ask=70571.12 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               60.0 seconds                        ║
+║ Total Updates:        16214                              ║
+║ Updates/sec:          270.1                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           1727 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70510.27 primary_bid=70520.34 primary_ask=70520.35 quote_bid=70439.43 quote_ask=70581.11 | primary_spread_bps=0.00 half_spread_bps=10.05 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               70.0 seconds                        ║
+║ Total Updates:        20906                              ║
+║ Updates/sec:          298.6                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           1727 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70505.56 primary_bid=70521.83 primary_ask=70521.84 quote_bid=70434.91 quote_ask=70576.21 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70528.71 primary_bid=70544.68 primary_ask=70544.69 quote_bid=70458.10 quote_ask=70599.33 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               80.0 seconds                        ║
+║ Total Updates:        26912                              ║
+║ Updates/sec:          336.3                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           1727 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70517.41 primary_bid=70531.11 primary_ask=70531.12 quote_bid=70446.73 quote_ask=70588.09 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70540.17 primary_bid=70556.90 primary_ask=70558.00 quote_bid=70469.48 quote_ask=70610.86 | primary_spread_bps=0.16 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:               90.0 seconds                        ║
+║ Total Updates:        32156                              ║
+║ Updates/sec:          357.2                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70552.56 primary_bid=70566.36 primary_ask=70566.37 quote_bid=70481.92 quote_ask=70623.19 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70530.78 primary_bid=70543.34 primary_ask=70545.86 quote_bid=70460.14 quote_ask=70601.42 | primary_spread_bps=0.36 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70513.07 primary_bid=70525.45 primary_ask=70525.46 quote_bid=70442.48 quote_ask=70583.67 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              100.0 seconds                        ║
+║ Total Updates:        39082                              ║
+║ Updates/sec:          390.7                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70524.20 primary_bid=70535.18 primary_ask=70535.19 quote_bid=70453.58 quote_ask=70594.82 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              110.0 seconds                        ║
+║ Total Updates:        43102                              ║
+║ Updates/sec:          391.7                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70523.75 primary_bid=70536.64 primary_ask=70536.65 quote_bid=70453.01 quote_ask=70594.47 | primary_spread_bps=0.00 half_spread_bps=10.03 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              120.0 seconds                        ║
+║ Total Updates:        46920                              ║
+║ Updates/sec:          390.9                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70550.05 primary_bid=70567.99 primary_ask=70568.00 quote_bid=70478.78 quote_ask=70621.31 | primary_spread_bps=0.00 half_spread_bps=10.10 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              130.0 seconds                        ║
+║ Total Updates:        50628                              ║
+║ Updates/sec:          389.3                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70556.41 primary_bid=70574.89 primary_ask=70574.90 quote_bid=70485.35 quote_ask=70627.47 | primary_spread_bps=0.00 half_spread_bps=10.07 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70592.26 primary_bid=70602.64 primary_ask=70602.65 quote_bid=70520.91 quote_ask=70663.60 | primary_spread_bps=0.00 half_spread_bps=10.11 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              140.1 seconds                        ║
+║ Total Updates:        55582                              ║
+║ Updates/sec:          396.9                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70611.38 primary_bid=70624.45 primary_ask=70624.46 quote_bid=70540.60 quote_ask=70682.15 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70625.40 primary_bid=70644.76 primary_ask=70644.77 quote_bid=70554.16 quote_ask=70696.64 | primary_spread_bps=0.00 half_spread_bps=10.09 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              150.1 seconds                        ║
+║ Total Updates:        60312                              ║
+║ Updates/sec:          401.9                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70649.71 primary_bid=70665.99 primary_ask=70666.00 quote_bid=70577.96 quote_ask=70721.46 | primary_spread_bps=0.00 half_spread_bps=10.16 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              160.1 seconds                        ║
+║ Total Updates:        65092                              ║
+║ Updates/sec:          406.7                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70633.51 primary_bid=70648.36 primary_ask=70648.37 quote_bid=70562.74 quote_ask=70704.27 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              170.1 seconds                        ║
+║ Total Updates:        67314                              ║
+║ Updates/sec:          395.8                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70610.48 primary_bid=70617.25 primary_ask=70617.26 quote_bid=70539.77 quote_ask=70681.20 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70636.88 primary_bid=70651.99 primary_ask=70652.00 quote_bid=70566.14 quote_ask=70707.62 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70651.78 primary_bid=70665.06 primary_ask=70665.07 quote_bid=70580.84 quote_ask=70722.73 | primary_spread_bps=0.00 half_spread_bps=10.04 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              180.1 seconds                        ║
+║ Total Updates:        76328                              ║
+║ Updates/sec:          423.9                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70667.37 primary_bid=70689.05 primary_ask=70689.06 quote_bid=70596.26 quote_ask=70738.47 | primary_spread_bps=0.00 half_spread_bps=10.06 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70684.92 primary_bid=70705.29 primary_ask=70705.31 quote_bid=70613.73 quote_ask=70756.10 | primary_spread_bps=0.00 half_spread_bps=10.07 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70705.08 primary_bid=70715.99 primary_ask=70716.00 quote_bid=70634.20 quote_ask=70775.96 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70704.33 primary_bid=70721.17 primary_ask=70721.18 quote_bid=70633.37 quote_ask=70775.30 | primary_spread_bps=0.00 half_spread_bps=10.04 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              190.1 seconds                        ║
+║ Total Updates:        87132                              ║
+║ Updates/sec:          458.4                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70719.12 primary_bid=70731.09 primary_ask=70731.10 quote_bid=70648.28 quote_ask=70789.96 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              200.1 seconds                        ║
+║ Total Updates:        91122                              ║
+║ Updates/sec:          455.4                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70746.97 primary_bid=70762.54 primary_ask=70762.55 quote_bid=70676.14 quote_ask=70817.80 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70749.25 primary_bid=70761.12 primary_ask=70761.13 quote_bid=70678.43 quote_ask=70820.06 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70763.34 primary_bid=70779.27 primary_ask=70779.28 quote_bid=70692.50 quote_ask=70834.18 | primary_spread_bps=0.00 half_spread_bps=10.01 | buy_cond=false sell_cond=true
+
+╔══════════════════════════════════════════════════════════════╗
+║                    🚀 ULTRA-FAST ARBIDE 🚀                    ║
+╠══════════════════════════════════════════════════════════════╣
+║ Mode:                    mm                              ║
+║ Runtime:              210.1 seconds                        ║
+║ Total Updates:       101176                              ║
+║ Updates/sec:          481.6                              ║
+║ Avg Latency:              2 μs                             ║
+║ Min Latency:              0 μs                             ║
+║ Max Latency:           2320 μs                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 MM: P&L: $0.96 | Fills: 101 | Quotes: 101 | Win rate: 100.0%
+[MM debug] fair_mid=70769.40 primary_bid=70786.91 primary_ask=70786.92 quote_bid=70697.79 quote_ask=70841.01 | primary_spread_bps=0.00 half_spread_bps=10.12 | buy_cond=false sell_cond=true
+[MM debug] fair_mid=70778.65 primary_bid=70792.89 primary_ask=70792.90 quote_bid=70707.76 quote_ask=70849.54 | primary_spread_bps=0.00 half_spread_bps=10.02 | buy_cond=false sell_cond=true
